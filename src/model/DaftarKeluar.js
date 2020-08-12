@@ -29,7 +29,7 @@ const insertDaftarKeluarSiswa = async (param) => {
   });
 };
 
-const viewDaftarKeluarSiswa = async () => {
+const viewDaftarKeluarSiswa = async (param) => {
   return new Promise(function (resolve, reject) {
     let sql = "SELECT * FROM daftar_keluar where DAFTAR_KELUAR_ID= ?";
     var sql_var = [param.DAFTAR_KELUAR_ID];

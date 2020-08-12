@@ -45,7 +45,7 @@ class PrestasiSiswaController {
   async doUpdatePrestasiSiswa(req, res) {
     const param = req.body;
     try {
-      const result = await updatePrestasiSiswa(param, param.ID_SISWA);
+      const result = await updatePrestasiSiswa(param, param.ID_PRESTASI_SISWA);
       res.status(200).send({
         result,
       });
@@ -57,7 +57,7 @@ class PrestasiSiswaController {
   async doDeletePrestasiSiswa(req, res) {
     const param = req.query;
     try {
-      const result = await deletePrestasiSiswa(param.ID_SISWA);
+      const result = await deletePrestasiSiswa(param.ID_PRESTASI_SISWA);
       res.status(200).send({
         result,
       });

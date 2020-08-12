@@ -53,6 +53,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const port = process.env.SERVER_PORT;
+var cors = require("cors");
 // app.use(express.urlencoded({ extended: false }));
 // app.use(express.json());
 
@@ -60,6 +61,7 @@ const port = process.env.SERVER_PORT;
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 // register base path '/'
 app.get("/", (req, res) =>

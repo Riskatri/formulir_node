@@ -20,9 +20,9 @@ class BeasiswaController {
   }
 
   async doSearchBeasiswaSiswa(req, res) {
-    // const param = req.query;
+    const param = req.query;
     try {
-      const result = await viewBeasiswaSiswa();
+      const result = await viewBeasiswaSiswa(param);
       res.status(200).send({
         result,
       });
@@ -46,7 +46,7 @@ class BeasiswaController {
   async doUpdateBeasiswaSiswa(req, res) {
     const param = req.body;
     try {
-      const result = await updateBeasiswaSiswa(param, param.ID_SISWA);
+      const result = await updateBeasiswaSiswa(param, param.BEASISWA_ID);
       res.status(200).send({
         result,
       });
@@ -58,7 +58,7 @@ class BeasiswaController {
   async doDeleteBeasiswaSiswa(req, res) {
     const param = req.query;
     try {
-      const result = await deleteBeasiswaSiswa(param.ID_SISWA);
+      const result = await deleteBeasiswaSiswa(param.BEASISWA_ID);
       res.status(200).send({
         result,
       });

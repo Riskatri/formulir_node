@@ -32,8 +32,8 @@ const insertBeasiswaSiswa = async (param) => {
 
 const viewBeasiswaSiswa = async (param) => {
   return new Promise(function (resolve, reject) {
-    let sql = "SELECT * FROM beasiswa where ID_SISWA= ?";
-    var sql_var = [param.ID_SISWA];
+    let sql = "SELECT * FROM beasiswa where BEASISWA_ID= ?";
+    var sql_var = [param.BEASISWA_ID];
     db.query(sql, sql_var, function (err, rows, fields) {
       if (err) {
         console.log(err);
@@ -59,19 +59,19 @@ const viewBeasiswaAllSiswa = async () => {
   });
 };
 
-const updateBeasiswaSiswa = async (param, ID_SISWA) => {
+const updateBeasiswaSiswa = async (param, BEASISWA_ID) => {
   return new Promise(function (resolve, reject) {
     let sql =
-      " UPDATE beasiswa set  BEASISWA_ID=?, ID_JENIS_BEASISWA=?, KETERANGAN=?, TAHUN_MULAI=?, TAHUN_SELESAI=? where ID_SISWA= ? ";
+      " UPDATE beasiswa set  ID_SISWA=?, ID_JENIS_BEASISWA=?, KETERANGAN=?, TAHUN_MULAI=?, TAHUN_SELESAI=? where BEASISWA_ID= ? ";
     var sql_var = [
-      //   param.ID_SISWA,
-      param.BEASISWA_ID,
+      param.ID_SISWA,
+
       param.ID_JENIS_BEASISWA,
       param.KETERANGAN,
       param.TAHUN_MULAI,
       param.TAHUN_SELESAI,
 
-      ID_SISWA,
+      BEASISWA_ID,
     ];
     db.query(sql, sql_var, function (err, result) {
       if (err) {
@@ -84,10 +84,10 @@ const updateBeasiswaSiswa = async (param, ID_SISWA) => {
   });
 };
 
-const deleteBeasiswaSiswa = async (ID_SISWA) => {
+const deleteBeasiswaSiswa = async (BEASISWA_ID) => {
   return new Promise(function (resolve, reject) {
-    let sql = " DELETE FROM beasiswa where ID_SISWA= ? ";
-    var sql_var = [ID_SISWA];
+    let sql = " DELETE FROM beasiswa where BEASISWA_ID= ? ";
+    var sql_var = [BEASISWA_ID];
     db.query(sql, sql_var, function (err, result) {
       if (err) {
         console.log(err);

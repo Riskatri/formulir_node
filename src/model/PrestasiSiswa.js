@@ -61,7 +61,7 @@ const viewPrestasiAllSiswa = async () => {
   });
 };
 
-const updatePrestasiSiswa = async (param, ID_SISWA) => {
+const updatePrestasiSiswa = async (param, ID_PRESTASI_SISWA) => {
   return new Promise(function (resolve, reject) {
     let sql =
       " UPDATE prestasi_siswa set   ID_SISWA =?,PRESTASI_ID=?,ID_TINGKAT=?, NAMA_PRESTASI=?, TAHUN=?, PENYELENGGARA =? where ID_PRESTASI_SISWA= ? ";
@@ -86,10 +86,10 @@ const updatePrestasiSiswa = async (param, ID_SISWA) => {
   });
 };
 
-const deletePrestasiSiswa = async (ID_SISWA) => {
+const deletePrestasiSiswa = async (ID_PRESTASI_SISWA) => {
   return new Promise(function (resolve, reject) {
-    let sql = " DELETE FROM prestasi_siswa where ID_SISWA= ? ";
-    var sql_var = [ID_SISWA];
+    let sql = " DELETE FROM prestasi_siswa where ID_PRESTASI_SISWA= ? ";
+    var sql_var = [ID_PRESTASI_SISWA];
     db.query(sql, sql_var, function (err, result) {
       if (err) {
         console.log(err);
