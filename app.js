@@ -79,3 +79,5 @@ var httpServer = http.createServer(app);
 httpServer.listen(port, () =>
   console.log(`Server started, listening on port ${port}!`)
 );
+
+module.exports = app;
