@@ -57,7 +57,7 @@ class TransportController {
   async doDeleteTransport(req, res) {
     const param = req.query;
     try {
-      const result = await deleteTransport(param.ID_TRANSPORT);
+      const result = await deleteTransport(param.ID_TRANSPORTASI);
       res.status(200).send({
         result,
       });

@@ -1,67 +1,43 @@
-// require("dotenv").config();
-// const { db } = require("./src/helper/DBUtil");
-// const {
-//   selectUser,
-//   insertUser,
-//   updateUser,
-//   deleteUser,
-// } = require("./src/model/User");
-
-// console.log(process.env.APP_NAME);
-
-// async function test() {
-//   //   var param = {
-//   //     id: 4,
-//   //   };
-//   //   let data = await selectUser(param);
-//   //   console.log(data);
-//   var id = "4";
-//   let result = await deleteUser(id);
-//   console.log(result);
-// }
-
-// // async function insert() {
-// //   var param = {
-// //     id: 1,
-// //     name: "Riska",
-// //     email: "riska@email.com",
-// //     password: "12345678",
-// //   };
-// //   var createdBy = "tester";
-// //   let result = await insertUser(param, createdBy);
-// //   console.log(result);
-// // }
-// // async function update() {
-// //   var param = {
-// //     name: "abas",
-// //     email: "abas@gail.com",
-// //   };
-// //   var id = "4";
-// //   let result = await updateUser(param, id);
-// //   console.log(result);
-// // }
-// test();
-// // update();
-// // insert();
-
 require("dotenv").config();
 const express = require("express");
 const http = require("http");
 const routes = require("./src/routes");
 const { errors } = require("celebrate");
 const bodyParser = require("body-parser");
+const fileUpload = require("express-fileupload");
 
 const app = express();
 const port = process.env.SERVER_PORT;
 var cors = require("cors");
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
 
 // parse application/json
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+
+app.use(express.static("public"));
+app.use(fileUpload());
+app.post("/upload", (req, res) => {
+  if (!req.files) {
+    return res.status(500).send("No files were uploaded.");
+  }
+
+  let sampleFile = req.files.file;
+  let file_name = Date.now() + "_" + sampleFile.name;
+
+  sampleFile.mv(`${__dirname}/public/${file_name}`, (err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send(err);
+    }
+    res.status(200).send({
+      status: "File uploaded!",
+      name: file_name,
+      path: `/${file_name}`,
+    });
+  });
+});
 
 // register base path '/'
 app.get("/", (req, res) =>
