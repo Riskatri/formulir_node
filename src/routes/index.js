@@ -24,6 +24,7 @@ const kontakRouter = require("./kontakRouter");
 const dataPriodikRouter = require("./dataPriodikRouter");
 const dataSiswaRouter = require("./dataSiswaRouter");
 const dataUmurRouter = require("./dataUmurRouter");
+// const uploadRouter = require("./uploadRouter");
 
 const routes = Router();
 routes.use("/agama", agamaRouter);
@@ -51,5 +52,6 @@ routes.use("/contact", kontakRouter);
 routes.use("/data_priodik", dataPriodikRouter);
 routes.use("/data_lengkap_siswa", dataSiswaRouter);
 routes.use("/age", dataUmurRouter);
+// routes.use("/upload", uploadRouter);
 
 module.exports = routes;

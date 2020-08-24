@@ -2,6 +2,7 @@ let chai = require("chai");
 let chaiHttp = require("chai-http");
 let server = require("../app");
 var expect = require("chai").expect;
+const fs = require("fs");
 
 chai.should();
 chai.use(chaiHttp);
@@ -2459,6 +2460,24 @@ describe("Test API DELETE /api/v1/beasiswa/", () => {
       .delete("/api/v1/beasiswa?BEASISWA_ID=" + BEASISWA_ID)
       .end((err, response) => {
         expect(response).to.have.status(200);
+        if (err) {
+          done(err);
+        } else {
+          done();
+        }
+      });
+  });
+});
+
+describe("Test API POST /upload", () => {
+  it("it should post upload", (done) => {
+    chai
+      .request(server)
+      .post("/upload")
+      .attach("file", "pict/tut_wuri.png")
+      .end((err, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body).to.be.an("object");
         if (err) {
           done(err);
         } else {

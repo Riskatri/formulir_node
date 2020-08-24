@@ -39,6 +39,10 @@ app.post("/upload", (req, res) => {
   });
 });
 
+app.get("/download", (req, res) => {
+  var filePath = "./public/1.png";
+  res.download(filePath);
+});
 // register base path '/'
 app.get("/", (req, res) =>
   res.send(`${process.env.APP_NAME} - ${process.env.APP_VERSION}`)
