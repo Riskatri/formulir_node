@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 //siswa
 describe("Test API GET /api/v1/siswa/semua_siswa", () => {
-  it("It should get all the task", (done) => {
+  it("It should get all the students", (done) => {
     chai
       .request(server)
       .get("/api/v1/siswa/semua_siswa")
@@ -28,7 +28,7 @@ describe("Test API GET /api/v1/siswa/semua_siswa", () => {
 //get by id
 
 describe("Test API GET /api/v1/siswa/:id", () => {
-  it("It should get by id the task", (done) => {
+  it("It should get by id the students", (done) => {
     const ID_SISWA = 1;
     chai
       .request(server)
@@ -2469,6 +2469,7 @@ describe("Test API DELETE /api/v1/beasiswa/", () => {
   });
 });
 
+//upload
 describe("Test API POST /upload", () => {
   it("it should post upload", (done) => {
     chai
@@ -2482,6 +2483,23 @@ describe("Test API POST /upload", () => {
           done(err);
         } else {
           done();
+        }
+      });
+  });
+});
+
+//Download
+describe("Test API GET /download", () => {
+  it("it should get file", (done) => {
+    chai
+      .request(server)
+      .get("/download")
+      .end((err, response) => {
+        expect(response).to.have.status(200);
+        if (err) {
+          done(err)
+        }else{
+          done()
         }
       });
   });

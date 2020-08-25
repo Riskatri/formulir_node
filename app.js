@@ -40,9 +40,21 @@ app.post("/upload", (req, res) => {
 });
 
 app.get("/download", (req, res) => {
-  var filePath = "./public/1.png";
-  res.download(filePath);
+  // var filePath = "./public/test.txt";
+  // res.download(filePath);
+  // console.log(filePath);
+  var fs = require("fs");
+  var writeStream = fs.createWriteStream("./public/example1.pdf");
+  writeStream.write("Generate file");
+  writeStream.end();
+  var fs = require("fs");
+  var files = fs.createReadStream("./public/example1.pdf");
+  res.writeHead(200, {
+    "Content-disposition": "attachment; filename=example1.pdf",
+  });
+  files.pipe(res);
 });
+
 // register base path '/'
 app.get("/", (req, res) =>
   res.send(`${process.env.APP_NAME} - ${process.env.APP_VERSION}`)
